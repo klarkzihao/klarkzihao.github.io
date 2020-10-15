@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        /* *{
+  background-color:rgba(0,0,0,0.1);
+  box-shadow:0 0 1px red;
+} */
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+            background-color: #B2BCCE;
+            border: 1px gray solid;
+            font-family: sans-serif;
+        }
+        
+        li {
+            position: relative;
+            padding: 1px 8px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        
+        li li {
+            display: block;
+        }
+        
+        ul ul {
+            color: black;
+            display: none;
+            position: absolute;
+            /* 放这里可以 */
+            left: 0;
+            top: 100%;
+        }
+        
+        li:hover {
+            color: white;
+            background-color: #2B60C9;
+            cursor: pointer;
+        }
+        
+        li:hover>ul {
+            display: block;
+            /*放这里不行*/
+            /* left:0;
+  top:100%; */
+        }
+        
+        ul ul ul {
+            position: absolute;
+            top: 0;
+            left: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>文件
+            <ul>
+                <li>新窗口</li>
+                <li>打开</li>
+                <li>关闭窗口</li>
+                <li>打印</li>
+            </ul>
+        </li>
+        <li>编辑
+            <ul>
+                <li>撤销</li>
+                <li>恢复</li>
+                <li>复制</li>
+                <li>粘贴</li>
+                <li>全选</li>
+                <li>在页面查找
+                    <ul>
+                        <li>搜索web</li>
+                        <li>查找上一个</li>
+                        <li>查找下一个</li>
+                        <li>查找
+                            <ul>
+                                <li>编辑</li>
+                                <li>格式</li>
+                                <li>查看</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>视图</li>
+        <li>历史记录</li>
+    </ul>
+</body>
+
+</html>
