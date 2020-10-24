@@ -28,12 +28,10 @@ ul li {
   top: 0;
   left: 0;
   right: 0;
-  display: block;
-  width: 100%;
-  height: 120px;
+  height: 100%;
   background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a2a9e6db5e3c5374301827435d8595c6.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto 120px;
   background-position: 50%;
 }
 
@@ -228,4 +226,45 @@ header #top-bar #right-bar div {
 }
 #all-product input:nth-child(6):checked ~ div > img:nth-child(6) {
   opacity: 1;
+}
+
+#below-lunbo {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 1226px;
+  margin: 15px auto;
+  justify-content: space-between;
+}
+#below-lunbo > div:first-child {
+  height: 167px;
+  width: 234px;
+  display: flex;
+  background-color: #5F5750;
+  flex-wrap: wrap;
+}
+#below-lunbo > div:first-child div {
+  font-size: 12px;
+  width: 78px;
+  margin: auto;
+  text-align: center;
+}
+#below-lunbo > div:first-child div:hover img {
+  opacity: 1;
+}
+#below-lunbo > div:first-child div:hover span {
+  color: white;
+}
+#below-lunbo > div:first-child div:visited span {
+  color: #CFCCCA;
+}
+#below-lunbo > div:first-child div img {
+  width: 24px;
+  opacity: 0.6;
+}
+#below-lunbo > div:first-child div span {
+  display: block;
+  color: #CFCCCA;
+}
+#below-lunbo img {
+  width: 316px;
 }
