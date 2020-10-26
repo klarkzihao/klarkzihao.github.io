@@ -4,8 +4,8 @@ body {
 }
 
 * {
-  // box-shadow: 0 0 3px yellow; //del
-  // background-color: rgba(0, 0, 0, 0.07); //del
+  box-shadow: inset 0 0 3px red; //del
+  background-color: rgba(0, 0, 0, 0.07); //del
   font-family: "Helvetica Neue", "Helvetica", "Arial", "Microsoft Yahei", "Hiragino Sans GB",
     "Heiti SC", "WenQuanYi Micro Hei", "sans-serif";
   line-height: 1.5;
@@ -63,6 +63,12 @@ header {
     font-size: 12px;
     display: flex;
     margin: 0 auto;
+
+    span {
+      color: #424242;
+      height: 34px;
+      line-height: 34px;
+    }
 
     #left-bar {
       display: flex;
@@ -149,7 +155,6 @@ header {
     align-items: center;
     margin:0 auto;
 
-
     /*小米手机~智能硬件展开栏*/
     .xiaomitoshequ {
       display: flex;
@@ -218,7 +223,6 @@ header {
     >a:nth-child(7):hover~.bar-text-hover>.xiaomitoshequ:nth-child(7) {
       /*小米手机hover*/
       height: 230px;
-      // display: flex;
       opacity: 1;
       margin: 33px auto;
     }
@@ -274,6 +278,99 @@ header {
 
     &:nth-child(6):checked~div>img:nth-child(6) {
       opacity: 1;
+    }
+  }
+
+  //轮播图左侧文字列表
+  #all-product-left-bar {
+
+
+    >ul {
+      list-style: none;
+      position: absolute;
+      color: white;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      width: 234px;
+      height: 420px;
+      background-color: rgba(100, 100, 100, 0.5);
+      z-index: 15;
+      justify-content: center;
+      padding: 20px 0;
+      margin: 0;
+
+
+      .left-side-bar {
+        padding: 0 25px;
+
+        >a {
+          &:visited {
+            color: white;
+            padding: 0;
+          }
+
+          &::before {
+            content: "";
+            line-height: 42px;
+          }
+        }
+
+        &:hover {
+          background-color: #ED712E;
+
+          //侧边栏li被hover，旁边到ul显示
+          ul {
+            display: flex;
+          }
+        }
+
+        ul {
+          position: absolute;
+          left: 100%;
+          top: 0;
+          bottom: 0;
+          // height: 460px;
+          list-style: none;
+          display: none;
+          // display: flex;
+          padding: 0;
+          flex-direction: column;
+          flex-wrap: wrap;
+          background-color: white;
+
+          //讲最后一个内容缺失的补上空白到底部
+          &::after {
+            content: "";
+            background-color: white;
+            flex: 1;
+          }
+
+          li {
+            width: 248px;
+            height: 76.66666667px;
+            background-color: white;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >a {
+              color: #333;
+
+              &:hover {
+                color: #FF6700;
+              }
+            }
+
+            img {
+              height: 40px;
+              opacity: 1;
+              position: static;
+            }
+          }
+        }
+      }
     }
   }
 }
