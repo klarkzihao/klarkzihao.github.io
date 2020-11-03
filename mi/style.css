@@ -368,3 +368,94 @@ header #top-bar #right-bar div {
 #below-lunbo img {
   width: 316px;
 }
+
+#xiaomi-shangou {
+  width: 1226px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#xiaomi-shangou p {
+  color: #333;
+  font-size: 22px;
+}
+#xiaomi-shangou .shangou-main {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+#xiaomi-shangou .shangou-main div:first-child {
+  background-color: #F1EDED;
+  border-top: 1px solid #E53935;
+}
+#xiaomi-shangou .shangou-main div:first-child #shangou-time {
+  color: #EF3A3B;
+  font-size: 21px;
+  margin: 54px 0 0;
+}
+#xiaomi-shangou .shangou-main div:first-child #shangou-finished {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 15px;
+}
+#xiaomi-shangou .shangou-main div:first-child div {
+  height: 46px;
+  display: inline-block;
+  margin: 28px 0 0;
+}
+#xiaomi-shangou .shangou-main div:first-child div .shangou-colon {
+  font-size: 24px;
+  margin: 0;
+  height: 100%;
+  width: 5px;
+  line-height: 46px;
+  color: #605751;
+}
+#xiaomi-shangou .shangou-main div:first-child div .shangou-countdown {
+  color: white;
+  background-color: #605751;
+  font-size: 24px;
+  margin: 0;
+  width: 46px;
+  height: 100%;
+  line-height: 46px;
+}
+#xiaomi-shangou .shangou-main div:first-child img {
+  width: 34px;
+  padding: 15px 0;
+}
+#xiaomi-shangou .shangou-main > li:nth-child(5n) {
+  border-top: 1px #00C0A5 solid;
+}
+#xiaomi-shangou .shangou-main > li:nth-child(5n+1) {
+  border-top: 1px #FFAC13 solid;
+}
+#xiaomi-shangou .shangou-main > li:nth-child(5n+2) {
+  border-top: 1px #83C44E solid;
+}
+#xiaomi-shangou .shangou-main > li:nth-child(5n+3) {
+  border-top: 1px #2196F3 solid;
+}
+#xiaomi-shangou .shangou-main > li:nth-child(5n+4) {
+  border-top: 1px #E53935 solid;
+}
+#xiaomi-shangou .shangou-main li {
+  text-align: center;
+  height: 339px;
+  width: 234px;
+  margin-right: 14px;
+}
+#xiaomi-shangou .shangou-main li img {
+  width: 160px;
+}
+#xiaomi-shangou .shangou-main li span {
+  color: #333;
+  display: inline-block;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 20px 3px;
+  width: 200px;
+}
+#xiaomi-shangou .shangou-main li span:visited {
+  color: #333;
+}
