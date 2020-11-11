@@ -67,7 +67,7 @@
   if (b == 0)
     console.log("确诊数不能等于0")
   else {
-    console.log(c.toFixed(3), "%")
+    console.log(c.toFixed(3) + "%")
   }
 </script>
 
@@ -126,7 +126,7 @@
   if (b <= 0 || a < 0)
     console.log("a或b值输入错误")
   else
-    console.log(a % b)
+    console.log((a % b).toFixed(4))
 </script>
 
 
@@ -149,8 +149,7 @@
   var a = Math.trunc(n / 100)
   var b = Math.trunc((n - a * 100) / 10)
   var c = n % 10
-  var result = c * 100 + b * 10 + a
-  console.log(result)
+  console.log(c, b, a)
 </script>
 
 
@@ -276,7 +275,6 @@
 <script type="norun" id="ch0104/05">
   var x = +prompt("输入x")
   var y = +prompt("输入y")
-  console.log(y)
   if (x >= 0 && x < 4294967296 && y >= -4294967296 && y < 4294967296) {
     if (x > y)
       console.log(">")
@@ -323,10 +321,13 @@
 
 <script type="norun" id="ch0104/09">
   var n = Number(prompt("输入n"))
-  for (let i = 3; i <= 7; i += 2) {
-    if (n % i == 0)
-      console.log(i)
-  }
+  if (n % 3 == 0 || n % 5 == 0 || n % 7 == 0) {
+    for (let i = 3; i <= 7; i += 2) {
+      if (n % i == 0)
+        console.log(i)
+    }
+  } else
+    console.log("n")
 </script>
 
 
@@ -403,7 +404,6 @@
       console.log(8 + n)
     else {
       var i = Math.ceil((weight - 1000) / 500)
-      console.log(n)
       console.log(8 + i * 4 + n)
     }
   } else {
@@ -446,9 +446,9 @@
 <script type="norun" id="ch0104/17">
   var year = +prompt("输入年份")
   if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
-    console.log("y")
+    console.log("Y")
   else
-    console.log("n")
+    console.log("N")
 </script>
 
 
