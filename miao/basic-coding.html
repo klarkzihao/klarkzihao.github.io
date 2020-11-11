@@ -187,8 +187,19 @@
 </script>
 
 
-<script id="ch0103/17">
-
+<script type="norun" id="ch0103/17">
+  var x1 = Number(prompt("输入x1"))
+  var y1 = Number(prompt("输入y1"))
+  var x2 = Number(prompt("输入x2"))
+  var y2 = Number(prompt("输入y2"))
+  var x3 = Number(prompt("输入x3"))
+  var y3 = Number(prompt("输入y3"))
+  var a = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
+  var b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3))
+  var c = Math.sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2))
+  var s = (a + b + c) / 2
+  var area = Math.sqrt(s * (s - a) * (s - b) * (s - c))
+  console.log(area.toFixed(2))
 </script>
 
 
@@ -474,7 +485,7 @@
 </script>
 
 
-<script id="ch0104/20">
+<script type="norun" id="ch0104/20">
   var a = +prompt("输入a")
   var b = +prompt("输入b")
   var c = +prompt("输入c")
@@ -489,6 +500,12 @@
     console.log("aa")
 </script>
 
-<script id="ch0104/21">
-
+<script type="norun" id="ch0104/21">
+  var n = Number(prompt("输入苹果数量n"))
+  var x = Number(prompt("输入虫子吃苹果速度x"))
+  var y = Number(prompt("输入y小时"))
+  if (y >= n * x)
+    console.log("输入数值有误")
+  else
+    console.log(n - (y / x + 0.5).toFixed(0))
 </script>

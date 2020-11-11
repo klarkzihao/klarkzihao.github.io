@@ -5,8 +5,6 @@ body {
 }
 
 * {
-  box-shadow: inset 0 0 3px red;
-  background-color: rgba(0, 0, 0, 0.07);
   font-family: "Helvetica Neue", "Helvetica", "Arial", "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", "sans-serif";
   line-height: 1.5;
   text-decoration: none;
@@ -379,29 +377,30 @@ header #top-bar #right-bar div {
   font-size: 22px;
 }
 #xiaomi-shangou .shangou-main {
+  background-color: #F5F5F5;
   list-style: none;
   padding: 0;
   display: flex;
 }
-#xiaomi-shangou .shangou-main div:first-child {
+#xiaomi-shangou .shangou-main li:first-child {
   background-color: #F1EDED;
   border-top: 1px solid #E53935;
 }
-#xiaomi-shangou .shangou-main div:first-child #shangou-time {
+#xiaomi-shangou .shangou-main li:first-child #shangou-time {
   color: #EF3A3B;
   font-size: 21px;
   margin: 54px 0 0;
 }
-#xiaomi-shangou .shangou-main div:first-child #shangou-finished {
+#xiaomi-shangou .shangou-main li:first-child #shangou-finished {
   color: rgba(0, 0, 0, 0.54);
   font-size: 15px;
 }
-#xiaomi-shangou .shangou-main div:first-child div {
+#xiaomi-shangou .shangou-main li:first-child div {
   height: 46px;
   display: inline-block;
   margin: 28px 0 0;
 }
-#xiaomi-shangou .shangou-main div:first-child div .shangou-colon {
+#xiaomi-shangou .shangou-main li:first-child div .shangou-colon {
   font-size: 24px;
   margin: 0;
   height: 100%;
@@ -409,7 +408,7 @@ header #top-bar #right-bar div {
   line-height: 46px;
   color: #605751;
 }
-#xiaomi-shangou .shangou-main div:first-child div .shangou-countdown {
+#xiaomi-shangou .shangou-main li:first-child div .shangou-countdown {
   color: white;
   background-color: #605751;
   font-size: 24px;
@@ -418,23 +417,23 @@ header #top-bar #right-bar div {
   height: 100%;
   line-height: 46px;
 }
-#xiaomi-shangou .shangou-main div:first-child img {
+#xiaomi-shangou .shangou-main li:first-child img {
   width: 34px;
   padding: 15px 0;
 }
-#xiaomi-shangou .shangou-main > li:nth-child(5n) {
+#xiaomi-shangou .shangou-main > li:nth-child(5n) + li {
   border-top: 1px #00C0A5 solid;
 }
-#xiaomi-shangou .shangou-main > li:nth-child(5n+1) {
+#xiaomi-shangou .shangou-main > li:nth-child(5n+1) + li {
   border-top: 1px #FFAC13 solid;
 }
-#xiaomi-shangou .shangou-main > li:nth-child(5n+2) {
+#xiaomi-shangou .shangou-main > li:nth-child(5n+2) + li {
   border-top: 1px #83C44E solid;
 }
-#xiaomi-shangou .shangou-main > li:nth-child(5n+3) {
+#xiaomi-shangou .shangou-main > li:nth-child(5n+3) + li {
   border-top: 1px #2196F3 solid;
 }
-#xiaomi-shangou .shangou-main > li:nth-child(5n+4) {
+#xiaomi-shangou .shangou-main > li:nth-child(5n+4) + li {
   border-top: 1px #E53935 solid;
 }
 #xiaomi-shangou .shangou-main li {
@@ -442,9 +441,12 @@ header #top-bar #right-bar div {
   height: 339px;
   width: 234px;
   margin-right: 14px;
+  background-color: #FAFAFA;
 }
 #xiaomi-shangou .shangou-main li img {
   width: 160px;
+  position: relative;
+  top: 22px;
 }
 #xiaomi-shangou .shangou-main li span {
   color: #333;
@@ -458,4 +460,68 @@ header #top-bar #right-bar div {
 }
 #xiaomi-shangou .shangou-main li span:visited {
   color: #333;
+}
+#xiaomi-shangou .shangou-main li .shangou-content {
+  color: #ADADAD;
+  font-size: 12px;
+  margin: auto auto 10px auto;
+}
+#xiaomi-shangou .shangou-main li .shangou-price-new {
+  color: #FA6609;
+  display: inline;
+  margin: 3px;
+}
+#xiaomi-shangou .shangou-main li .shangou-price-old {
+  color: #ADADAD;
+  display: inline;
+  margin: 3px;
+  text-decoration: line-through;
+}
+#xiaomi-shangou .shangou-main li:first-child ~ li img {
+  margin: 30px auto;
+}
+
+.k30-zhizunjinian {
+  width: 1226px;
+  margin: auto;
+  position: relative;
+}
+.k30-zhizunjinian img {
+  width: 100%;
+}
+.k30-zhizunjinian a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.brick-box-all {
+  background-color: #F5F5F5;
+  width: 1226px;
+  margin: auto;
+}
+.brick-box-all .brick-box-title {
+  position: relative;
+}
+.brick-box-all .brick-box-title .brick-title-right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.brick-box-all .brick-item-l img {
+  width: 234px;
+}
+.brick-box-all .home-brick-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.brick-box-all .home-brick-box .home-brick-product {
+  width: 234px;
+}
+.brick-box-all .home-brick-box .home-brick-product img {
+  width: 160px;
 }

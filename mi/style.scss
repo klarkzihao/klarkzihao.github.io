@@ -4,8 +4,8 @@ body {
 }
 
 * {
-	box-shadow: inset 0 0 3px red; //del
-	background-color: rgba(0, 0, 0, 0.07); //del
+	// box-shadow: inset 0 0 3px red; //del
+	// background-color: rgba(0, 0, 0, 0.07); //del
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Microsoft Yahei", "Hiragino Sans GB",
 		"Heiti SC", "WenQuanYi Micro Hei", "sans-serif";
 	line-height: 1.5;
@@ -468,11 +468,12 @@ header {
 	}
 
 	.shangou-main {
+		background-color: #F5F5F5;
 		list-style: none;
 		padding: 0;
 		display: flex;
 
-		div:first-child {
+		li:first-child {
 			background-color: #F1EDED;
 			border-top: 1px solid #E53935;
 
@@ -518,23 +519,23 @@ header {
 			}
 		}
 
-		>li:nth-child(5n) {
+		>li:nth-child(5n)+li {
 			border-top: 1px #00C0A5 solid;
 		}
 
-		>li:nth-child(5n+1) {
+		>li:nth-child(5n+1)+li {
 			border-top: 1px #FFAC13 solid;
 		}
 
-		>li:nth-child(5n+2) {
+		>li:nth-child(5n+2)+li {
 			border-top: 1px #83C44E solid;
 		}
 
-		>li:nth-child(5n+3) {
+		>li:nth-child(5n+3)+li {
 			border-top: 1px #2196F3 solid;
 		}
 
-		>li:nth-child(5n+4) {
+		>li:nth-child(5n+4)+li {
 			border-top: 1px #E53935 solid;
 		}
 
@@ -543,9 +544,12 @@ header {
 			height: 339px;
 			width: 234px;
 			margin-right: 14px;
+			background-color: #FAFAFA;
 
 			img {
 				width: 160px;
+				position: relative;
+				top: 22px;
 			}
 
 			span {
@@ -561,6 +565,86 @@ header {
 				&:visited {
 					color: #333;
 				}
+			}
+
+			.shangou-content {
+				color: #ADADAD;
+				font-size: 12px;
+				margin: auto auto 10px auto;
+			}
+
+			.shangou-price-new {
+				color: #FA6609;
+				display: inline;
+				margin: 3px;
+			}
+
+			.shangou-price-old {
+				color: #ADADAD;
+				display: inline;
+				margin: 3px;
+				text-decoration: line-through;
+			}
+		}
+
+		li:first-child~li {
+			img {
+				margin: 30px auto;
+			}
+		}
+	}
+}
+
+.k30-zhizunjinian {
+	width: 1226px;
+	margin: auto;
+	position: relative;
+
+	img {
+		width: 100%;
+	}
+
+	a::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.brick-box-all {
+	background-color: #F5F5F5;
+	width: 1226px;
+	margin: auto;
+
+	.brick-box-title {
+		position: relative;
+
+		.brick-title-right {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translateY(-50%);
+		}
+	}
+
+	.brick-item-l {
+		img {
+			width: 234px;
+		}
+	}
+
+	.home-brick-box {
+		display: flex;
+		flex-wrap: wrap;
+
+		.home-brick-product {
+			width: 234px;
+
+			img {
+				width: 160px;
 			}
 		}
 	}
