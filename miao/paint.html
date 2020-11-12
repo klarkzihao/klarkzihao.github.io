@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="400" height="200"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    x = x | 0
+    y = y | 0
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+
+  function line(x1, y1, x2, y2) {
+    ctx.strokeStyle = 'black'
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
+  }
+
+  /**
+   * YOUR TASK
+画图的题：
+画一条实线
+画一条一个实点一个空点的虚线
+画一条两个实点两个空点的虚线
+画一条三个实点两个空点的虚线
+画一条45度的斜线
+画一条30度的斜线（选做）
+在四个角画分别画一条45度的斜线以让画面看起来像一个相框
+画一条跨越画布左上角和右下角的对角线
+画一个空心矩形
+画一个实心矩形
+画一个rgb色彩空间的某一面
+画一个空心的圆
+画一个实心的圆
+画一个大小合适的sin(x)的图像
+   */
+</script>
+<script>
+  // YOUR CODE GOES BELOW
+  for (let i = 0; i < 200; i++)
+    dot(i, 20, 'teal')
+
+  for (let i = 0; i < 200; i++) {
+    if (i % 2 == 0)
+      dot(i, 30, 'teal')
+  }
+
+  for (let i = 0; i < 200; i++) {
+    if (i % 4 == 0) {
+      dot(i, 40, 'teal')
+      dot(i + 1, 40, 'teal')
+    }
+  }
+
+  for (let i = 0; i < 200; i++) {
+    if (i % 5 == 0) {
+      dot(i, 50, 'teal')
+      dot(i + 1, 50, 'teal')
+      dot(i + 2, 50, 'teal')
+    }
+  }
+
+  for (let i = 0; i < 200; i++) {
+    dot(i, i, 'teal')
+  }
+
+  for (let i = 0; i < 200; i++) {
+    dot(i, 0.5 * i, 'teal')
+  }
+
+  for (let i = 0; i < 200; i++) {
+    dot(40 - i, i, 'maroon')
+    dot(i, i + 160, 'maroon')
+    dot(i + 360, i, 'maroon')
+    dot(i + 360, 200 - i, 'maroon')
+  }
+
+  for (let i = 0; i < 400; i++) {
+    dot(i, i / 2, 'red')
+  }
+
+  for (let i = 0; i < 50; i++) {
+    dot(10, i + 60, 'black')
+    dot(60, i + 60, 'black')
+    dot(i + 10, 60, 'black')
+    dot(i + 10, 110, 'black')
+  }
+
+  for (let i = 0; i < 50; i++) {
+    for (let j = 0; j < 50; j++) {
+      dot(i + 70, j + 60, '#2e7d32')
+    }
+  }
+
+  for (let i = 1; i < 64; i++) {
+    for (let j = 1; j < 64; j++) {
+      color = "rgb(" + 4 * i + "," + 4 * j + ",255)"
+      dot(i + 130, j + 60, color)
+    }
+  }
+
+  for (let i = 0; i < 360; i++) {
+    dot(0.5 * i + 200, (50 * Math.sin(i * Math.PI / 180) + 50), 'brown')
+    // console.log(20 * Math.sin(i * Math.PI / 180))
+  }
+
+  for (let i = 0; i < 360; i++) {
+    dot((35 * Math.cos(i * Math.PI / 180) + 250), (35 * Math.sin(i * Math.PI / 180) + 150), 'purple')
+    // console.log(20 * Math.sin(i * Math.PI / 180))
+  }
+  for (let i = 0; i < 360; i++) {
+    for (let j = 0; j < 30; j++) {
+      dot((j * Math.cos(i * Math.PI / 180) + 330), (j * Math.sin(i * Math.PI / 180) + 150), 'violet')
+      // console.log(20 * Math.sin(i * Math.PI / 180))
+    }
+  }
+
+</script>
+
+</html>
