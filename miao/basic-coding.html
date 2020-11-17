@@ -938,7 +938,7 @@
 </script>
 
 
-<script type="" id="ch0105/31">
+<script type="no" id="ch0105/31">
   var N = Number(prompt("输入N"))
   var M = Number(prompt("输入M"))
   // debugger
@@ -954,28 +954,72 @@
 </script>
 
 
-<script id="ch0105/32">
-
+<script type="no" id="ch0105/32">
+  var n = Number(prompt("输入n"))
+  var last = 1
+  var next = 1
+  var sum = 0
+  for (let i = 1; i <= n; i++) {
+    var q = last + next
+    last = next
+    var p = last
+    next = q
+    sum += q / p
+    // console.log(q, p)
+  }
+  console.log(sum.toFixed(4))
 </script>
 
 
-<script id="ch0105/33">
-
+<script type="no" id="ch0105/33">
+  var n = Number(prompt("输入n"))
+  var sum = 0
+  for (let i = 1; i <= n; i++) {
+    sum += Math.pow(-1, i + 1) * (1 / i)
+  }
+  console.log(sum.toFixed(4))
 </script>
 
 
-<script id="ch0105/34">
-
+<script type="no" id="ch0105/34">
+  var n = Number(prompt("输入n"))
+  var sum = 0
+  for (let i = 1; i <= n; i++) {
+    var temp = 1
+    for (let j = 1; j <= i; j++)
+      temp *= j
+    // console.log(temp)
+    sum += temp
+  }
+  console.log(sum)
 </script>
 
 
-<script id="ch0105/35">
-
+<script type="no" id="ch0105/35">
+  var n = Number(prompt("输入n"))
+  var sum = 0
+  for (let i = 1; i <= n; i++) {
+    var temp = 1
+    if (i == 1)
+      temp = 1
+    else
+      for (let j = 2; j <= i + 1; j++)
+        temp /= (j - 1)
+    console.log(i, temp)
+    sum += temp
+  }
+  console.log(sum.toFixed(10))
 </script>
 
 
-<script id="ch0105/36">
-
+<script type="no" id="ch0105/36">
+  var x = Number(prompt("输入x"))
+  var n = Number(prompt("输入n"))
+  var sum = 0
+  for (let i = 0; i <= n; i++) {
+    sum += Math.pow(x, n - i)
+  }
+  console.log(sum.toFixed(2))
 </script>
 
 
