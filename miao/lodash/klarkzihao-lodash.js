@@ -8,13 +8,13 @@ var klarkzihao = function () {
   }
 
   function compact(ary) {
+    var result = []
     for (let i = 0; i < ary.length; i++) {
-      if (!ary[i] || ary[i] == 0) {
-        ary.splice(i, 1)
-        i--
-      }
+      if (!ary[i] || ary[i] == 0)
+        continue
+      result.push(ary[i])
     }
-    return ary
+    return result
   }
 
   function drop(ary, n = 1) {
@@ -25,9 +25,20 @@ var klarkzihao = function () {
     return ary.slice(0, ary.length - n)
   }
 
+  function fill(ary, value, start = 0, end = ary.length) {
+    for (let i = start; i < end; i++)
+      ary[i] = value
+    return ary
+  }
+
+
+
   return {
     chunk,
     compact,
     drop,
+    dropRight,
+    fill,
+
   }
 }()
