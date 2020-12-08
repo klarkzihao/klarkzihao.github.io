@@ -28,7 +28,7 @@ var klarkzihao = function () {
     return ary
   }
 
-  function findIndex(array, predicate = _.identity, fromIndex = 0) {
+  function findIndex(array, predicate = identity, fromIndex = 0) {
     for (let i = 0; i < array.length; i++) {
       if (predicate(array[i]))
         return i
@@ -95,6 +95,48 @@ var klarkzihao = function () {
   //   }
   // }
 
+  function max(ary) {
+    if (ary.length == 0)
+      return undefined
+    var max = ary[0]
+    for (let i = 1; i < ary.length; i++)
+      max = max > ary[i] ? max : ary[i]
+    return max
+  }
+
+  function maxBy(array, iteratee = identity) {
+
+  }
+
+  function min(ary) {
+    if (ary.length == 0)
+      return undefined
+    var min = ary[0]
+    for (let i = 1; i < ary.length; i++)
+      min = min < ary[i] ? min : ary[i]
+    return min
+  }
+
+  function sum(ary) {
+    var sum = 0
+    for (let i = 0; i < ary.length; i++)
+      sum += ary[i]
+    return sum
+  }
+
+  function toArray(value) {
+    if (typeof (value) == 'number' || !value)
+      return []
+    else if (typeof (value) == "object") {
+      var ary = []
+      for (let keys in obj)
+        ary.push(obj[keys])
+      return (aaa)
+    } else if (typeof (value) == "string") {
+      return value.split('')
+    }
+  }
+
   return {
     chunk,
     compact,
@@ -107,6 +149,11 @@ var klarkzihao = function () {
     indexOf,
     initial,
     reverse,
-    sortedIndex
+    sortedIndex,
+
+    toArray,
+    max,
+    min,
+    sum,
   }
 }()
