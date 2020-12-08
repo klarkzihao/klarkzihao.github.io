@@ -17,22 +17,17 @@ var klarkzihao = function () {
     return ary
   }
 
-  // function difference(ary, value = null) {
-  //   var result = []
-  //   var temp = {}
-  //   if (!value)
-  //     return ary
-  //   else {
-  //     for (let i = 0; i < ary.length; i++) {
-  //       temp[ary[i]] = 1
-  //     }
-  //     for (let i = 0; i < value.length; i++){
-  //       if(temp)
-  //     }
-  //   }
-  // }
+  function drop(ary, n = 1) {
+    return ary.slice(n)
+  }
+
+  function dropRight(ary, n = 1) {
+    return ary.slice(0, ary.length - n)
+  }
+
   return {
     chunk,
     compact,
+    drop,
   }
 }()
