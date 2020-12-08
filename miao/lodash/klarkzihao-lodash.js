@@ -28,6 +28,14 @@ var klarkzihao = function () {
     return ary
   }
 
+  function findIndex(array, predicate = _.identity, fromIndex = 0) {
+    for (let i = 0; i < array.length; i++) {
+      if (predicate(array[i]))
+        return i
+    }
+    return -1
+  }
+
   function fromPairs(ary) {
     var obj = {}
     for (let i = 0; i < ary.length; i++)
@@ -51,7 +59,7 @@ var klarkzihao = function () {
   }
 
   function reverse(ary) {
-    var length = Math.trunc((ary.length - 1) / 2)
+    var length = (ary.length - 1) >> 1
     for (let i = 0, j = ary.length - 1; i < length; i++, j--) {
       var temp = ary[i]
       ary[i] = ary[j]
@@ -81,12 +89,19 @@ var klarkzihao = function () {
     } return right
   }
 
+  // function every(collection, predicate = _.identity) {
+  //   for (let i = 0; i < collection.length; i++){
+  //     if()
+  //   }
+  // }
+
   return {
     chunk,
     compact,
     drop,
     dropRight,
     fill,
+    findIndex,
     fromPairs,
     head,
     indexOf,
