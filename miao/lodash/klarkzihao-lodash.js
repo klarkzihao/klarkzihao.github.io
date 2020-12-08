@@ -1,9 +1,8 @@
 var klarkzihao = function () {
   function chunk(ary, size = 1) {
     var result = []
-    for (let i = 0; i < ary.length; i += size) {
+    for (let i = 0; i < ary.length; i += size)
       result.push(ary.slice(i, i + size))
-    }
     return result
   }
 
