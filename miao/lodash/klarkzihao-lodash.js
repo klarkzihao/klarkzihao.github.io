@@ -6,11 +6,45 @@ var klarkzihao = function () {
     return result
   }
 
+
   function compact(ary) {
     var result = []
     for (let i = 0; i < ary.length; i++)
       if (ary[i])
         result.push(ary[i])
+    return result
+  }
+
+  function difference(ary, values = []) {
+    var temp = {}
+    var result = []
+    values.forEach(n => {
+      if (!(n in temp))
+        temp[n] = n
+    })
+    ary.forEach(n => {
+      if (!(n in temp))
+        result.push(n)
+    })
+    return result
+  }
+
+  function differenceBy(ary, values = [], iteratee) {
+    var temp = {}
+    var result = []
+    if (typeof (iteratee) == 'function') {
+      values.forEach(n => {
+        if (!(n in temp))
+          temp[iteratee(n)] = n
+      })
+      ary.forEach(n => {
+        if (!(iteratee(n) in temp))
+          result.push(n)
+      })
+    } else if (typeof (iteratee) == 'string') {
+
+    }
+
     return result
   }
 
@@ -45,6 +79,10 @@ var klarkzihao = function () {
 
   function head(ary) {
     return ary[0]
+  }
+
+  function identity() {
+    return arguments[0]
   }
 
   function indexOf(ary, value, fromIndex = 0) {
@@ -140,12 +178,15 @@ var klarkzihao = function () {
   return {
     chunk,
     compact,
+    difference,
+    differenceBy,
     drop,
     dropRight,
     fill,
     findIndex,
     fromPairs,
     head,
+    identity,
     indexOf,
     initial,
     reverse,
