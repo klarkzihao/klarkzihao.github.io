@@ -18,10 +18,12 @@ var klarkzihao = function () {
   function difference(ary, values = []) {
     var temp = {}
     var result = []
-    values.forEach(n => {
-      if (!(n in temp))
-        temp[n] = n
-    })
+    for (let i = 1; i < arguments.length; i++) {
+      arguments[i].forEach(n => {
+        if (!(n in temp))
+          temp[n] = n
+      })
+    }
     ary.forEach(n => {
       if (!(n in temp))
         result.push(n)
@@ -42,9 +44,9 @@ var klarkzihao = function () {
           result.push(n)
       })
     } else if (typeof (iteratee) == 'string') {
-
+      for (let i = 0; i < values.length; i++) {
+      }
     }
-
     return result
   }
 
@@ -53,7 +55,7 @@ var klarkzihao = function () {
   }
 
   function dropRight(ary, n = 1) {
-    return ary.slice(0, ary.length - n)
+    return ary.length > n ? ary.slice(0, ary.length - n) : []
   }
 
   function fill(ary, value, start = 0, end = ary.length) {
@@ -68,6 +70,32 @@ var klarkzihao = function () {
         return i
     }
     return -1
+  }
+
+  function flatten(ary) {
+    let result = []
+    ary.forEach(num => {
+      if (typeof (num) == "object")
+        result = result.concat(num)
+      else
+        result.push(num)
+    })
+    return result
+  }
+
+  function flattenDeep(ary, result = []) {
+    ary.forEach(num => {
+      if (typeof (num) == "number")
+        result.push(num)
+      else
+        this.flattenDeep(num, result)
+    })
+    return result
+  }
+
+  function flattenDepth(ary, depth = 1, result = []) {
+
+    return result
   }
 
   function fromPairs(ary) {
@@ -184,6 +212,9 @@ var klarkzihao = function () {
     dropRight,
     fill,
     findIndex,
+    flatten,
+    flattenDeep,
+    // flattenDepth,
     fromPairs,
     head,
     identity,
