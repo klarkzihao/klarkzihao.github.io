@@ -333,7 +333,75 @@ var klarkzihao = function () {
     }
   }
 
+  function union(...args) {
+    let result = []
+    let map = {}
+    for (let i = 0; i < args.length; i++) {
+      for (let j = 0; j < args[i].length; j++) {
+        if (!(args[i][j] in map)) {
+          map[args[i][j]] = 1
+          result.push(args[i][j])
+        }
+      }
+    }
+    return result
+  }
 
+  function unionBy(...args) {
+    let iteratee = args[args.length - 1]
+    let result = []
+    let map = {}
+    if (typeof (iteratee) == 'function') {
+      for (let i = 0; i < args.length - 1; i++) {
+        for (let j = 0; j < args[i].length; j++) {
+          if (!(iteratee(args[i][j]) in map)) {
+            map[iteratee(args[i][j])] = 1
+            result.push(args[i][j])
+          }
+        }
+      }
+    } else
+      if (typeof (iteratee) == 'string') {
+        for (let i = 0; i < args.length - 1; i++) {
+          for (let j = 0; j < args[i].length; j++) {
+            if (!(args[i][j][iteratee] in map)) {
+              map[args[i][j][iteratee]] = 1
+              result.push(args[i][j])
+            }
+          }
+        }
+      }
+    return result
+  }
+
+  function uniq(...args) {
+    let result = []
+    let map = {}
+    args.forEach(item => {
+      item.forEach(it => {
+        if (!(it in map)) {
+          map[it] = it
+          result.push(it)
+        }
+      })
+    })
+    return result
+  }
+
+  // function uniqBy(...args) {
+  //   let iteratee = args[args.length - 1]
+  //   let result = []
+  //   let map = {}
+  //   if (typeof (iteratee == "function")) {
+  //     for (let i = 0; i < args.length - 1; i++){
+  //       for (let j = 0; j < args[i].length; j++){
+  //         if(!(args[i][j]))
+  //       }
+  //     }
+  //   }
+
+  //   return result
+  // }
 
   // function groupBy(collection, iteratee) {
   //   let result = {}
@@ -374,5 +442,8 @@ var klarkzihao = function () {
     min,
     minBy,
     sum,
+    union,
+    unionBy,
+    uniq,
   }
 }()
