@@ -58,18 +58,48 @@ var klarkzihao = function () {
     return ary.length > n ? ary.slice(0, ary.length - n) : []
   }
 
+  // function dropRightWhile(array, predicate = _.identity) {
+
+  // }
+
   function fill(ary, value, start = 0, end = ary.length) {
     for (let i = start; i < end; i++)
       ary[i] = value
     return ary
   }
 
-  function findIndex(array, predicate = identity, fromIndex = 0) {
-    for (let i = 0; i < array.length; i++) {
-      if (predicate(array[i]))
-        return i
-    }
-    return -1
+  function findIndex(users, predicate = identity, fromIndex = 0) {
+    if (typeof (predicate) == "function") {
+      for (let i = fromIndex; i < users.length; i++) {
+        if (predicate(users[i]))
+          return i
+      }
+    } else
+      if (Array.isArray(predicate)) {
+        for (let i = fromIndex; i < users.length; i++) {
+          if (users[i][predicate[0]] == predicate[1])
+            return i
+        }
+      } else
+        if (typeof (predicate == "object")) {
+          for (let i = fromIndex; i < users.length; i++) {
+            let count = 0
+            for (let j = 0; j < Object.keys(predicate).length; j++) {
+              if (Object.values(users[i])[j] == Object.values(predicate)[j])
+                count++
+              else
+                break
+            }
+            if (count == Object.keys(predicate).length)
+              return i
+          }
+        } else
+          if (typeof (predicate) == "string") {
+            for (let i = 0; i < users.length; i++) {
+              if (users[i][predicate])
+                return i
+            }
+          }
   }
 
   function flatten(ary) {
@@ -122,6 +152,46 @@ var klarkzihao = function () {
 
   function initial(ary) {
     return ary.slice(0, ary.length - 1)
+  }
+
+  function join(ary, separator = ',') {
+    let result = ''
+    for (let i = 0; i < ary.length - 1; i++) {
+      result = result + ary[i] + separator
+    }
+    result += ary[ary.length - 1]
+    return result
+  }
+
+  function last(array) {
+    return array[array.length - 1]
+  }
+
+  function lastIndexOf(array, value, fromIndex = array.length - 1) {
+    for (let i = fromIndex; i >= 0; i--) {
+      if (array[i] == value)
+        return i
+    }
+    return -1
+  }
+
+  function pull(array, values = '') {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] == values)
+        array.splice(i, 1)
+    }
+  }
+
+  function remove(array, predicate = this.identity) {
+    let newArray = []
+    for (let i = 0; i < array.length; i++) {
+      if (predicate(array[i])) {
+        newArray.push(array[i])
+        array.splice(i, 1)
+        i--
+      }
+    }
+    return newArray
   }
 
   function reverse(ary) {
@@ -203,6 +273,13 @@ var klarkzihao = function () {
     }
   }
 
+
+  // function groupBy(collection, iteratee) {
+  //   let result = {}
+  //   if()
+  //   }
+  // }
+
   return {
     chunk,
     compact,
@@ -210,6 +287,7 @@ var klarkzihao = function () {
     differenceBy,
     drop,
     dropRight,
+    // dropRightWhile,
     fill,
     findIndex,
     flatten,
@@ -220,6 +298,11 @@ var klarkzihao = function () {
     identity,
     indexOf,
     initial,
+    join,
+    last,
+    lastIndexOf,
+    // pull,
+    remove,
     reverse,
     sortedIndex,
 
