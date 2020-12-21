@@ -102,6 +102,42 @@ var klarkzihao = function () {
           }
   }
 
+
+  function findLastIndex(users, predicate = identity, fromIndex = users.length - 1) {
+    if (typeof (predicate) == "function") {
+      for (let i = fromIndex; i < users.length; i++) {
+        if (predicate(users[i]))
+          return i
+      }
+    } else
+      if (Array.isArray(predicate)) {
+        for (let i = fromIndex; i < users.length; i++) {
+          if (users[i][predicate[0]] == predicate[1])
+            return i
+        }
+      } else
+        if (typeof (predicate == "object")) {
+          for (let i = fromIndex; i < users.length; i++) {
+            let count = 0
+            for (let j = 0; j < Object.keys(predicate).length; j++) {
+              if (Object.values(users[i])[j] == Object.values(predicate)[j])
+                count++
+              else
+                break
+            }
+            if (count == Object.keys(predicate).length)
+              return i
+          }
+        } else
+          if (typeof (predicate) == "string") {
+            for (let i = 0; i < users.length; i++) {
+              if (users[i][predicate])
+                return i
+            }
+          }
+  }
+
+
   function flatten(ary) {
     let result = []
     ary.forEach(num => {
@@ -240,8 +276,18 @@ var klarkzihao = function () {
     return max
   }
 
-  function maxBy(array, iteratee = identity) {
-
+  function maxBy(objects, iteratee = identity) {
+    let max = -Infinity
+    if (typeof (iteratee) == "function") {
+      for (let i = 0; i < Object.keys(objects).length; i++)
+        max = max > iteratee(objects[i]) ? max : iteratee(objects[i])
+      return max
+    }
+    else if (typeof (iteratee == 'string')) {
+      for (let i = 0; i < Object.keys(objects).length; i++)
+        max = max > objects[i][iteratee] ? max : objects[i][iteratee]
+      return max
+    }
   }
 
   function min(ary) {
@@ -251,6 +297,20 @@ var klarkzihao = function () {
     for (let i = 1; i < ary.length; i++)
       min = min < ary[i] ? min : ary[i]
     return min
+  }
+
+  function minBy(objects, iteratee = identity) {
+    let min = Infinity
+    if (typeof (iteratee) == "function") {
+      for (let i = 0; i < Object.keys(objects).length; i++)
+        min = min < iteratee(objects[i]) ? min : iteratee(objects[i])
+      return min
+    }
+    else if (typeof (iteratee == 'string')) {
+      for (let i = 0; i < Object.keys(objects).length; i++)
+        min = min < objects[i][iteratee] ? min : objects[i][iteratee]
+      return min
+    }
   }
 
   function sum(ary) {
@@ -274,6 +334,7 @@ var klarkzihao = function () {
   }
 
 
+
   // function groupBy(collection, iteratee) {
   //   let result = {}
   //   if()
@@ -290,6 +351,7 @@ var klarkzihao = function () {
     // dropRightWhile,
     fill,
     findIndex,
+    findLastIndex,
     flatten,
     flattenDeep,
     // flattenDepth,
@@ -308,7 +370,9 @@ var klarkzihao = function () {
 
     toArray,
     max,
+    maxBy,
     min,
+    minBy,
     sum,
   }
 }()
