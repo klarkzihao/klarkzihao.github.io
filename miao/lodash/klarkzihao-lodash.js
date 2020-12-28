@@ -459,46 +459,77 @@ var klarkzihao = function () {
     return typeof (value) === "string"
   }
 
-  function sameType(value, other) {
-    if (typeof (value) !== typeof (other))
-      return false
-    if (this.isNaN(value) || this.isNaN(other) || this.isArray(value) || this.isArray(value)) {
-      if (this.isArray(value) && this.isArray(other))
-        return true
-      else if (this.isNumber(value) && this.isNumber(other)) {
-        if ((this.isNaN(value) && this.isNaN(other)))
-          return true
-        else
-          return false
-      }
+  function parseType(value) {
+    if (isNumber(value)) {
+      if (isNaN(value))
+        return "NaN"
       else
-        return false
+        return "number"
     }
-    return true
+    if (isBoolean(value))
+      return "boolean"
+    if (isFunction(value))
+      return "function"
+    if (isArray(value))
+      return "array"
+    if (isObject(value))
+      return "object"
+    if (isString(value))
+      return "string"
+  }
+
+  function isSameType(value, other) {
+    if (parseType(value) === parseType(other))
+      return true
+    else
+      return false
   }
 
   function isEqual(value, other) {
-    if (!this.sameType(value, other))
+    if (isSameType, (value, other)) {
+      if (parseType(value) === "array") {
+        return value.every((it, i) => parseType(it) === "object" ? isEqual(it, other[i]) : it === other[i])
+      }
+      if (parseType(value) === "object") {
+        return Object.keys(value).every(it => parseType(value[it]) === "object" ? isEqual(value[it], other[it]) : value[it] === other[it])
+      }
+    }
+    else
       return false
-    else {
-      if (this.isArray(value)) {
-        if (value.length == other.length)
-          return value.every((it, i) => it === other[i])
-        else
-          return false
+  }
+
+  /*
+  如果是array，迭代中判断it是不是object
+    if (parseType(it) !== "object")
+      return it === other[i]
+    else
+      return isEqual(it, other[i])
+  */
+  /*
+  如果是object，迭代中判断it是不是object
+    if (parseType(value[it]) !== "object")
+      return value[it] === other[it]
+    else
+      return isEqual(value[it], other[it])
+  */
+
+  function isMatch(object, source) {
+    if (isSameType(object, source)) {
+      if (parseType(object) === "object")
+        return Object.keys(source).every(it => isObject(source[it]) ? isMatch(source[it], object[it]) : source[it] === object[it])
+      if (parseType(object) === "array") {
+        let idx = object.indexOf(source[0])
+        return source.every((it, i) => it === object[idx + i])
       }
-      if (this.isObject(value)) {
-        if (Object.keys(value).length == Object.keys(other).length)
-          return Object.keys(value).every(it => value[it] === other[it])
-        else
-          return false
-      }
-      if (value === other)
-        return true
-      else
-        return false
     }
   }
+  /*
+          if (!isObject(source[it]))
+            return source[it] === object[it]
+          else
+            return isMatch(source[it], object[it])
+  */
+
 
 
   return {
@@ -546,7 +577,11 @@ var klarkzihao = function () {
     isNumber,
     isObject,
     isString,
-    sameType,
     isEqual,
+    isMatch,
+
+
+    parseType,
+    isSameType,
   }
 }()
