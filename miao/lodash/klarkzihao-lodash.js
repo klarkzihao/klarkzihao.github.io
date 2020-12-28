@@ -75,12 +75,15 @@ var klarkzihao = function () {
           return i
       }
     } else
-      if (Array.isArray(predicate)) {
-        for (let i = fromIndex; i < users.length; i++) {
-          if (users[i][predicate[0]] == predicate[1])
+
+      if (typeof (predicate) == "string") {
+        for (let i = 0; i < users.length; i++) {
+          if (users[i][predicate])
             return i
         }
-      } else
+      }
+
+      else
         if (typeof (predicate == "object")) {
           for (let i = fromIndex; i < users.length; i++) {
             let count = 0
@@ -94,9 +97,9 @@ var klarkzihao = function () {
               return i
           }
         } else
-          if (typeof (predicate) == "string") {
-            for (let i = 0; i < users.length; i++) {
-              if (users[i][predicate])
+          if (Array.isArray(predicate)) {
+            for (let i = fromIndex; i < users.length; i++) {
+              if (users[i][predicate[0]] == predicate[1])
                 return i
             }
           }
@@ -278,16 +281,25 @@ var klarkzihao = function () {
 
   function maxBy(objects, iteratee = identity) {
     let max = -Infinity
+    let maxNum = 0
     if (typeof (iteratee) == "function") {
-      for (let i = 0; i < Object.keys(objects).length; i++)
-        max = max > iteratee(objects[i]) ? max : iteratee(objects[i])
-      return max
+      for (let i = 0; i < Object.keys(objects).length; i++) {
+        if (max < iteratee(objects[i])) {
+          max = iteratee(objects[i])
+          maxNum = i
+        }
+
+      }
     }
     else if (typeof (iteratee == 'string')) {
-      for (let i = 0; i < Object.keys(objects).length; i++)
-        max = max > objects[i][iteratee] ? max : objects[i][iteratee]
-      return max
+      for (let i = 0; i < Object.keys(objects).length; i++) {
+        if (max < objects[i][iteratee]) {
+          max = objects[i][iteratee]
+          maxNum = i
+        }
+      }
     }
+    return objects[maxNum]
   }
 
   function min(ary) {
@@ -301,16 +313,24 @@ var klarkzihao = function () {
 
   function minBy(objects, iteratee = identity) {
     let min = Infinity
+    let minNum = 0
     if (typeof (iteratee) == "function") {
-      for (let i = 0; i < Object.keys(objects).length; i++)
-        min = min < iteratee(objects[i]) ? min : iteratee(objects[i])
-      return min
+      for (let i = 0; i < Object.keys(objects).length; i++) {
+        if (min > iteratee(objects[i])) {
+          min = iteratee(objects[i])
+          minNum = i
+        }
+      }
     }
     else if (typeof (iteratee == 'string')) {
-      for (let i = 0; i < Object.keys(objects).length; i++)
-        min = min < objects[i][iteratee] ? min : objects[i][iteratee]
-      return min
+      for (let i = 0; i < Object.keys(objects).length; i++) {
+        if (min > objects[i][iteratee]) {
+          min = objects[i][iteratee]
+          minNum = i
+        }
+      }
     }
+    return objects[minNum]
   }
 
   function sum(ary) {
@@ -409,6 +429,78 @@ var klarkzihao = function () {
   //   }
   // }
 
+
+  //Lodash lang functions
+  function isArray(value) {
+    return Array.isArray(value)
+  }
+
+  function isBoolean(value) {
+    return value === true || value === false
+  }
+
+  function isFunction(value) {
+    return typeof (value) === "function"
+  }
+
+  function isNaN(value) {
+    return window.isNaN(value)
+  }
+
+  function isNumber(value) {
+    return typeof (value) === "number"
+  }
+
+  function isObject(value) {
+    return !isArray(value) && typeof (value) === "object"
+  }
+
+  function isString(value) {
+    return typeof (value) === "string"
+  }
+
+  function sameType(value, other) {
+    if (typeof (value) !== typeof (other))
+      return false
+    if (this.isNaN(value) || this.isNaN(other) || this.isArray(value) || this.isArray(value)) {
+      if (this.isArray(value) && this.isArray(other))
+        return true
+      else if (this.isNumber(value) && this.isNumber(other)) {
+        if ((this.isNaN(value) && this.isNaN(other)))
+          return true
+        else
+          return false
+      }
+      else
+        return false
+    }
+    return true
+  }
+
+  function isEqual(value, other) {
+    if (!this.sameType(value, other))
+      return false
+    else {
+      if (this.isArray(value)) {
+        if (value.length == other.length)
+          return value.every((it, i) => it === other[i])
+        else
+          return false
+      }
+      if (this.isObject(value)) {
+        if (Object.keys(value).length == Object.keys(other).length)
+          return Object.keys(value).every(it => value[it] === other[it])
+        else
+          return false
+      }
+      if (value === other)
+        return true
+      else
+        return false
+    }
+  }
+
+
   return {
     chunk,
     compact,
@@ -445,5 +537,16 @@ var klarkzihao = function () {
     union,
     unionBy,
     uniq,
+
+
+    isArray,
+    isBoolean,
+    isFunction,
+    isNaN,
+    isNumber,
+    isObject,
+    isString,
+    sameType,
+    isEqual,
   }
 }()
