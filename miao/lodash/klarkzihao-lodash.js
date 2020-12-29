@@ -214,12 +214,23 @@ var klarkzihao = function () {
     return -1
   }
 
-  function pull(array, values = '') {
+  function pull(array, ...args) {
+    array.forEach((it, i) =>
+      args.forEach(item => {
+        if (item === it)
+          delete array[i]
+      })
+    )
+
     for (let i = 0; i < array.length; i++) {
-      if (array[i] == values)
+      if (!array[i]) {
         array.splice(i, 1)
+        i--
+      }
     }
+    return array
   }
+
 
   function remove(array, predicate = this.identity) {
     let newArray = []
@@ -444,7 +455,7 @@ var klarkzihao = function () {
   }
 
   function isNaN(value) {
-    return window.isNaN(value)
+    return Number.isNaN(value)
   }
 
   function isNumber(value) {
@@ -452,7 +463,7 @@ var klarkzihao = function () {
   }
 
   function isObject(value) {
-    return !isArray(value) && typeof (value) === "object"
+    return value !== null && (typeof value === "object" || typeof value === "function")
   }
 
   function isString(value) {
@@ -472,10 +483,10 @@ var klarkzihao = function () {
       return "function"
     if (isArray(value))
       return "array"
-    if (isObject(value))
-      return "object"
     if (isString(value))
       return "string"
+    if (isObject(value))
+      return "object"
   }
 
   function isSameType(value, other) {
@@ -486,13 +497,23 @@ var klarkzihao = function () {
   }
 
   function isEqual(value, other) {
-    if (isSameType, (value, other)) {
+    if (isSameType(value, other)) {
       if (parseType(value) === "array") {
-        return value.every((it, i) => parseType(it) === "object" ? isEqual(it, other[i]) : it === other[i])
+        if (value.length === other.length)
+          return value.every((it, i) => parseType(it) === "object" ? isEqual(it, other[i]) : it === other[i])
+        else
+          return false
       }
       if (parseType(value) === "object") {
-        return Object.keys(value).every(it => parseType(value[it]) === "object" ? isEqual(value[it], other[it]) : value[it] === other[it])
+        if (Object.keys(value).length === Object.keys(other).length)
+          return Object.keys(value).every(it => parseType(value[it]) === "object" ? isEqual(value[it], other[it]) : value[it] === other[it])
+        else
+          return false
       }
+      if (value === other)
+        return true
+      else
+        return false
     }
     else
       return false
@@ -530,6 +551,13 @@ var klarkzihao = function () {
             return isMatch(source[it], object[it])
   */
 
+  function preOperate(value) {
+    if (parseType(value) === "function")
+      return value
+    if (parseType(value) === "number")
+      return
+  }
+
 
 
   return {
@@ -554,7 +582,7 @@ var klarkzihao = function () {
     join,
     last,
     lastIndexOf,
-    // pull,
+    pull,
     remove,
     reverse,
     sortedIndex,
